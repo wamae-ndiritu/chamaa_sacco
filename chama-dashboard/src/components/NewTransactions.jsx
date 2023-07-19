@@ -78,7 +78,7 @@ const NewTransactions = () => {
   return (
     <div className="new-transactions-cont mt-3 shadow-lg">
       <h5 className="h5 text-success">New Transactions</h5>
-      <div>
+      <div className="table-cont">
         <DataGrid
           rows={rows}
           columns={columns}

@@ -14,10 +14,10 @@ class UsageStats extends React.Component {
         labels: ["Savings", "Loans", " Borrowings", "Investment", "Expenses"],
         responsive: [
           {
-            // breakpoint: 480,
+            breakpoint: 480,
             options: {
               chart: {
-                // width: 200,
+                width: 350,
               },
               legend: {
                 position: "bottom",
@@ -36,7 +36,7 @@ class UsageStats extends React.Component {
           options={this.state.options}
           series={this.state.series}
           type="pie"
-          width={380}
+          // width={380}
           className="usage-chart"
         />
       </div>

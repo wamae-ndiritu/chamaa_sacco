@@ -29,6 +29,7 @@ a {
 .cont {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .sidebar-wrapper {
@@ -38,6 +39,10 @@ a {
   max-width: 200px;
   padding: 10px 0;
   background-color: darkcyan;
+}
+
+.main {
+  flex: 5;
 }
 
 .sidebar {
@@ -152,10 +157,6 @@ a {
 
 .logout-btn .link-icon {
   color: darkcyan;
-}
-
-.main {
-  flex: 5;
 }
 
 @media (max-width: 768.5px) {
@@ -301,6 +302,8 @@ a {
 .main-cont {
   margin-top: 80px;
   padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .widget-small {

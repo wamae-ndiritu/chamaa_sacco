@@ -2,30 +2,71 @@ $large_screen: 991.98px;
 $medium_screen: 767.98px;
 $small_screen: 575.98px;
 
-
-.container{
-    width: 100% !important;
-    padding: 0 !important;
-}
-
-.row{
-    padding: 0 !important;
-}
-
-/*@media (max-width: $medium_screen){
-    .main-cont{
-        flex: 100%;
-        background-color: red;
+@media (max-width: $medium_screen){
+    .cont {
+        flex-wrap: wrap;
     }
-    .sidebar{
+
+    .sidebar-wrapper {
         display: none;
     }
 
-    .row{
-        gap: 20px;
+    .main{
+        flex: 100%;
+        width: 350px;
     }
 
-    .widget-small{
-        max-width: 350px;
+    .main-cont {
+        margin-top: 80px;
+        padding: 0 0;
+
+        .widget-small {
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .h6{
+                font-size: 24px;
+            }
+
+            .widget-small-text{
+                gap: 0;
+                justify-content: space-between;
+
+                span{
+                    font-size: 18px;
+                }
+            }
+
+            p{
+                font-size: 18px;
+            }
+        }
+        
+        .user-card, .target-card{
+            margin-bottom: 10px;
+
+            .h6{
+                font-size: 20px;
+            }
+        }
+
+        .user-card{
+
+            .user-icon{
+                width: 80px;
+                height: 80px;
+
+                .fa-users{
+                    font-size: 28px;
+                }
+            }
+        }
+
+        .new-transactions-cont{
+            padding: 20px;
+            // max-width: 350px;
+
+        }
+        
     }
-}*/
+}
