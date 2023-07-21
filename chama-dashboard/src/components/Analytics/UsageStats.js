@@ -1,5 +1,6 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
+
 class UsageStats extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class UsageStats extends React.Component {
             breakpoint: 480,
             options: {
               chart: {
-                width: 350,
+                width: props.deviceWidth - 50,
               },
               legend: {
                 position: "bottom",

@@ -16,6 +16,7 @@ function ScrollProvider({ children }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <ScrollContext.Provider value={{ deviceWidth }}>
       {children}

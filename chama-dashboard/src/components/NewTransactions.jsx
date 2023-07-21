@@ -1,5 +1,6 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { useGlobalContext } from "../context/context";
 
 const rows = [
   {
@@ -75,8 +76,12 @@ const NewTransactions = () => {
   //     }
   //     return "";
   //   };
+  const { scrollContext } = useGlobalContext();
   return (
-    <div className="new-transactions-cont mt-3 shadow-lg">
+    <div
+      className="new-transactions-cont mt-3 shadow-lg"
+      style={{ width: `${scrollContext.deviceWidth}` }}
+    >
       <h5 className="h5 text-success">New Transactions</h5>
       <div className="table-cont">
         <DataGrid
