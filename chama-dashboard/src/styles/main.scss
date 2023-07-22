@@ -12,6 +12,8 @@ $small_screen: 575.98px;
     }
 
     .main{
+        display: flex;
+        width: 100%;
         flex: 100%;
     }
 
@@ -62,7 +64,7 @@ $small_screen: 575.98px;
         }
 
         .new-transactions-cont{
-            padding: 20px;
+            padding: 20px 5px;
             // max-width: 350px;
 
         }

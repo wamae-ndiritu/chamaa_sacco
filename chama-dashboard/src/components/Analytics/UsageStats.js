@@ -37,7 +37,7 @@ class UsageStats extends React.Component {
           options={this.state.options}
           series={this.state.series}
           type="pie"
-          // width={380}
+          width={360}
           className="usage-chart"
         />
       </div>

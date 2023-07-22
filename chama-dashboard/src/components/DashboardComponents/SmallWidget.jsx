@@ -9,7 +9,7 @@ const SmallWidget = () => {
   return (
     <div className="container">
       <div className="row d-flex">
-        <div className="col-lg-3 col-md-4 col-sm-6">
+        <div className="col-lg-3 col-md-4 col-sm-6 col-6">
           <div className="shadow-sm widget-small">
             <div className="widget-small-icon">
               <AccountBalanceIcon />
@@ -24,7 +24,7 @@ const SmallWidget = () => {
             <p>compared to last month</p>
           </div>
         </div>
-        <div className="col-lg-3 col-md-4 col-sm-6">
+        <div className="col-lg-3 col-md-4 col-sm-6 col-6">
           <div className="shadow-sm widget-small">
             <div className="widget-small-icon text-info">
               <EuroIcon />
@@ -40,7 +40,7 @@ const SmallWidget = () => {
             <p>compared to last month</p>
           </div>
         </div>
-        <div className="col-lg-3 col-md-4 col-sm-6">
+        <div className="col-lg-3 col-md-4 col-sm-6 col-6">
           <div className="shadow-sm user-card">
             <div className="user-icon">
               <i className="fa fa-users" aria-hidden="true"></i>
@@ -48,7 +48,7 @@ const SmallWidget = () => {
             <h6 className="h6">10 Active Members</h6>
           </div>
         </div>
-        <div className="col-lg-3 col-md-4 col-sm-6">
+        <div className="col-lg-3 col-md-4 col-sm-6 col-6">
           <div className="shadow-sm target-card">
             <h6 className="target-title text-success h6">Monthly Target</h6>
             <CircularProgressbar

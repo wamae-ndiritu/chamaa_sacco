@@ -30,6 +30,7 @@ const data = {
 };
 
 const LineChart = () => {
+  <Chart />;
   return (
     <div>
       <Line data={data} />

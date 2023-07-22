@@ -4,7 +4,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 const TopHeader = () => {
   return (
-    <div className="top-header bg-info">
+    <div className="top-header">
       <div className="topheader-wrapper">
         <div className="left">
           <h5 className="h5">Chama Sacco</h5>

@@ -14,19 +14,15 @@ import Notifications from "./pages/Notifications";
 import Member from "./pages/Member";
 import SideBar from "./components/SideBar";
 import TopHeader from "./components/TopHeader";
-import { useGlobalContext } from "./context/context";
 
 function App() {
-  const { scrollContext } = useGlobalContext();
-  const deviceWidth = window.innerWidth;
-
   return (
     <Router>
       <div className="cont">
         <div className="sidebar-wrapper">
           <SideBar />
         </div>
-        <main className="main" style={{ width: `${deviceWidth}` }}>
+        <main className="main">
           <TopHeader />
           <div className="main-cont">
             <Routes>
