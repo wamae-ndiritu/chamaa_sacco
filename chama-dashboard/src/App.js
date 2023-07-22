@@ -12,27 +12,46 @@ import ApprovedTransactions from "./pages/ApprovedTransactions";
 import PendingTransactions from "./pages/PendingTransactions";
 import Notifications from "./pages/Notifications";
 import Member from "./pages/Member";
+import SideBar from "./components/SideBar";
+import TopHeader from "./components/TopHeader";
+import { useGlobalContext } from "./context/context";
 
 function App() {
+  const { scrollContext } = useGlobalContext();
+  const deviceWidth = window.innerWidth;
+
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/management" element={<Management />} />
-        <Route path="/members" element={<Members />} />
-        <Route path="/members/:id" element={<Member />} />
-        <Route path="/savings" element={<Savings />} />
-        <Route path="/loans" element={<Loans />} />
-        <Route path="/balance" element={<Balance />} />
-        <Route
-          path="/transactions/approved"
-          element={<ApprovedTransactions />}
-        />
-        <Route path="/transactions/pending" element={<PendingTransactions />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
+      <div className="cont">
+        <div className="sidebar-wrapper">
+          <SideBar />
+        </div>
+        <main className="main" style={{ width: `${deviceWidth}` }}>
+          <TopHeader />
+          <div className="main-cont">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/management" element={<Management />} />
+              <Route path="/members" element={<Members />} />
+              <Route path="/members/:id" element={<Member />} />
+              <Route path="/savings" element={<Savings />} />
+              <Route path="/loans" element={<Loans />} />
+              <Route path="/balance" element={<Balance />} />
+              <Route
+                path="/transactions/approved"
+                element={<ApprovedTransactions />}
+              />
+              <Route
+                path="/transactions/pending"
+                element={<PendingTransactions />}
+              />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </div>
+        </main>
+      </div>
     </Router>
   );
 }

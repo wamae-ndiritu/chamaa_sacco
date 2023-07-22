@@ -7,6 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 const SideBar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+
   return (
     <div className="sidebar">
       <div className="logo">

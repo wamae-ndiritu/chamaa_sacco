@@ -9,7 +9,7 @@ class UsageStats extends React.Component {
       series: [70, 55, 13, 43, 22],
       options: {
         chart: {
-          width: 500,
+          width: 570,
           type: "pie",
         },
         labels: ["Savings", "Loans", " Borrowings", "Investment", "Expenses"],
