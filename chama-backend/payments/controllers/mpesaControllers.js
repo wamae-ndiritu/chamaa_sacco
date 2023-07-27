@@ -74,7 +74,7 @@ exports.stkPush = (req, res) => {
   const dateNow = datetime.create();
   const timestamp = dateNow.format("YmdHMS");
 
-  const callbackUrl = "https://shangilia-server.onrender.com/api/confirmation/";
+  const callbackUrl = "https://chamaa-sacco-api.onrender.com/api/confirmation/";
 
   const stkUrl = "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
   let data = {

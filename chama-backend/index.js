@@ -5,6 +5,7 @@ const { connectDatabase } = require("./dbConfig");
 const { memberRouter } = require("./routes/memberRoutes");
 const { mpesaRouter } = require("./payments/routes/mpesaRoutes");
 const { messageRouter } = require("./routes/messageRoutes");
+const { callBackRouter } = require("./payments/controllers/mpesaCallback");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use("/api/members", memberRouter);
 app.use("/api/payments", mpesaRouter);
 app.use("/api/messages", messageRouter);
+app.use("/api/confirmation/", callBackRouter);
 // app.use("/api/contributions", memberRouter);
 
 app.listen(PORT, () => {
