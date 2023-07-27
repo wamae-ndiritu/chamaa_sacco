@@ -60,13 +60,12 @@ exports.stkPush = (req, res) => {
   // console.log(req.body);
   // console.log(`token as in stkPush ${token}`);
 
-  const { contributionAmount, phoneNo } = req.body;
-  console.log(req.body);
+  const { amountPayable, phoneNo } = req.body;
 
   // console.log(`amountPayable: ${amountPayable}, phoneNo: ${phoneNo}`);
 
   const phone = Number(phoneNo);
-  const contribution = Number(contributionAmount);
+  const contribution = Number(amountPayable);
   const headers = {
     Authorization: "Bearer " + token,
   };
