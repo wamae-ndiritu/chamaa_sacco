@@ -1,16 +1,17 @@
 import React from "react";
+import { useGlobalContext } from "../../context/context";
 
 const SavingsWidget = () => {
+  const { openFundModal } = useGlobalContext();
+
+  const handleModal = () => {
+    openFundModal();
+  };
   return (
-    <div className="container" style={{ backgroundColor: "balck" }}>
-      <div className="row d-flex">
-        <div className="col-lg-4 col-md-4 shadow-sm">
-          <h6 className="h6">Current Savings</h6>
-        </div>
-        <div className="col-lg-4 col-md-4">
-          <h6>Add Savings</h6>
-        </div>
-      </div>
+    <div className="container">
+      <button className="btn-add" onClick={handleModal}>
+        Add Fund
+      </button>
     </div>
   );
 };

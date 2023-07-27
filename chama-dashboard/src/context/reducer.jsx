@@ -19,6 +19,11 @@ export const reducer = (state, action) => {
       ...state,
       isMessageModalOpen: true,
     };
+  } else if (action.type === "OPEN_FUND_MODAL") {
+    return {
+      ...state,
+      isFundModalOpen: true,
+    };
   } else if (action.type === "CLOSE_MODAL") {
     return {
       ...state,
@@ -28,6 +33,11 @@ export const reducer = (state, action) => {
     return {
       ...state,
       isMessageModalOpen: false,
+    };
+  } else if (action.type === "CLOSE_FUND_MODAL") {
+    return {
+      ...state,
+      isFundModalOpen: false,
     };
   }
 };
