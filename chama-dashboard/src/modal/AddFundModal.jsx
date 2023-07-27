@@ -34,7 +34,9 @@ function AddFundModal() {
       {isFundModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3 className="h3 text-success text-center">Add Member</h3>
+            <h3 className="h3 text-success text-center">
+              Add Your Contribution
+            </h3>
             <div class="mb-3">
               <label for="name" class="form-label">
                 Number
@@ -45,7 +47,7 @@ function AddFundModal() {
                 id="name"
                 name="phoneNo"
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="2547********"
               />
             </div>
             <div class="mb-3">
@@ -58,7 +60,7 @@ function AddFundModal() {
                 id="phone"
                 name="contributionAmount"
                 onChange={handleChange}
-                placeholder="254740924507"
+                placeholder="KES"
               />
             </div>
             <div className="modal-btns">
