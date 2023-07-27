@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Modal.css"; // Import your modal styles
-import { URL } from "../Url";
 import { useGlobalContext } from "../context/context";
 
 function MessageModal() {
