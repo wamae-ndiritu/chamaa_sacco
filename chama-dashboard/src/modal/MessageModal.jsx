@@ -19,9 +19,13 @@ function MessageModal() {
 
   const handleSubmit = (e) => {
     axios
-      .post(`${URL}/api/mesages/add`, { message, phoneNo })
+      .post(`https://ats-sms-api.onrender.com/sms`, {
+        message,
+        recipients: phoneNo,
+      })
       .then(({ data }) => {
         console.log(data);
+        closeMessageModal();
       })
       .catch((err) => console.log(err));
   };
