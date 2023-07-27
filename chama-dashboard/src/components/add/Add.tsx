@@ -49,7 +49,7 @@ const Add = (props: Props) => {
   return (
     <div className="add">
       <div className="modal">
-        <span className="close" onClick={() => props.setOpen(false)}>
+        <span className="close" onClick={() => props.setOpen(true)}>
           X
         </span>
         <h1>Add new {props.slug}</h1>

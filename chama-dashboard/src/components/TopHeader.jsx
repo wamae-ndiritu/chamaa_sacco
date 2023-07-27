@@ -1,8 +1,14 @@
 import React from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { useGlobalContext } from "../context/context";
 
 const TopHeader = () => {
+  const { openMessageModal } = useGlobalContext();
+
+  const handleNotification = () => {
+    openMessageModal();
+  };
   return (
     <div className="top-header">
       <div className="topheader-wrapper">
@@ -11,7 +17,7 @@ const TopHeader = () => {
         </div>
         <div className="right">
           <div className="top-header-icons">
-            <div className="top-icon notification">
+            <div className="top-icon notification" onClick={handleNotification}>
               <NotificationsIcon />
               <span className="notification-badge">0</span>
             </div>

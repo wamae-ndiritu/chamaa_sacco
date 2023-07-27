@@ -1,10 +1,13 @@
 import React from "react";
+import SavingsWidget from "../components/savings/SavingsWidget";
+import SmallWidget from "../components/DashboardComponents/SmallWidget";
 
 const Savings = () => {
   return (
-    <div>
-      <h2>Savings</h2>
-    </div>
+    <>
+      <SmallWidget />
+      <SavingsWidget />
+    </>
   );
 };
 

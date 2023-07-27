@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useGlobalContext } from "../context/context";
+import MembersList from "../components/members/MembersList";
 
 const Management = () => {
+  const { admins, getAdmins } = useGlobalContext();
+  const formattedData = admins?.map((admin) => {
+    return {
+      ...admin,
+      id: admin._id,
+    };
+  });
+
+  useEffect(() => {
+    getAdmins();
+  }, [getAdmins]);
   return (
     <div>
-      <h2>Management</h2>
+      <MembersList data={formattedData} />
     </div>
   );
 };

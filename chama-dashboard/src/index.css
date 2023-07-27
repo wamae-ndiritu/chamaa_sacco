@@ -13,6 +13,10 @@
   border-radius: 10px;
 }
 
+.container {
+  width: 100% !important;
+}
+
 body {
   font-family: "Courier New", Courier, monospace;
 }
@@ -43,6 +47,7 @@ a {
 .main {
   flex: 5;
   /* width: calc(100% - 200px); */
+  /* background-color: aqua; */
 }
 
 .sidebar {
@@ -303,6 +308,7 @@ a {
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
+  /* background-color: antiquewhite; */
 }
 
 .widget-small {
@@ -434,4 +440,15 @@ a {
   color: gray;
   padding: 0;
   margin: 0;
+}
+
+.add-btn {
+  background-color: darkcyan;
+  color: #fff;
+  padding: 10px;
+  border: 1px solid gray;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }

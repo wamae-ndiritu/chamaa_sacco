@@ -18,7 +18,7 @@ class UsageStats extends React.Component {
             breakpoint: 480,
             options: {
               chart: {
-                width: props.deviceWidth - 50,
+                width: 350,
               },
               legend: {
                 position: "bottom",
