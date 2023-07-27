@@ -20,7 +20,10 @@ function AddFundModal() {
     e.preventDefault();
     axios
       .post(`${URL}/api/payments/stk/push`, details)
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => {
+        console.log(data);
+        closeFundModal();
+      })
       .catch((err) => console.log(err));
   };
 
@@ -64,7 +67,7 @@ function AddFundModal() {
               />
             </div>
             <div className="modal-btns">
-              <button className="bg-success " onClick={handleSubmit}>
+              <button className="bg-success" onClick={handleSubmit}>
                 Submit
               </button>
               <button onClick={handleCloseModal} className="bg-danger ">
