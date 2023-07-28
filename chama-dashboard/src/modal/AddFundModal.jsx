@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Modal.css"; // Import your modal styles
 import { useGlobalContext } from "../context/context";
+import { URL } from "../Url";
 
 function AddFundModal() {
   const { isFundModalOpen, closeFundModal } = useGlobalContext();
@@ -18,10 +19,7 @@ function AddFundModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`https://shangilia-server.onrender.com/api/payment/stk/push`, {
-        amountPayable: details.contributionAmount,
-        phoneNo: details.phoneNo,
-      })
+      .post(`${URL}/api/payment/stk/push`, details)
       .then(({ data }) => {
         console.log(data);
         closeFundModal();
