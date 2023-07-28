@@ -24,6 +24,7 @@ exports.mpesaPassword = (req, res) => {
 };
 
 exports.token = (req, res, next) => {
+  console.log("calling token...");
   //ACCESS_TOKEN
 
   const url =
@@ -57,8 +58,8 @@ exports.token = (req, res, next) => {
 exports.stkPush = (req, res) => {
   let token = req.access_token;
 
-  // console.log(req.body);
-  // console.log(`token as in stkPush ${token}`);
+  console.log(req.body);
+  console.log(`token as in stkPush ${token}`);
 
   const { amountPayable, phoneNo } = req.body;
 

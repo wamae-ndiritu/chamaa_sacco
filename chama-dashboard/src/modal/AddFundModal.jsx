@@ -19,7 +19,7 @@ function AddFundModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${URL}/api/payment/stk/push`, details)
+      .post(`${URL}/api/payments/stk/push`, details)
       .then(({ data }) => {
         console.log(data);
         closeFundModal();
