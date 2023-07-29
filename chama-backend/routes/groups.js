@@ -1,5 +1,6 @@
 const express = require("express");
 const { db } = require("../config/db");
+const { registerGroup } = require("../controllers/groups");
 
 const groupRouter = express.Router();
 
@@ -43,5 +44,7 @@ groupRouter.post("/create-tables", (req, res) => {
   );
   res.status(200).json({ message: "Tables created!" });
 });
+
+groupRouter.post("/register", registerGroup);
 
 module.exports = { groupRouter };

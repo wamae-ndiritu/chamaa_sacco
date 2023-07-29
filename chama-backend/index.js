@@ -18,7 +18,7 @@ app.use(cors());
 // API CALLS
 app.use("/api/members", memberRouter);
 app.use("/api/payments", mpesaRouter);
-// app.use("/api/confirmation/", callBackRouter);
+app.use("/api/confirmation/", callBackRouter);
 // app.use("/api/contributions", memberRouter);
 
 //CHAMAA ADMIN APIS
