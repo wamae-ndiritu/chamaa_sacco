@@ -1,5 +1,4 @@
 const express = require("express");
-const { Contribution } = require("../../models/contributionModel");
 
 const callBackRouter = express.Router();
 
@@ -50,28 +49,6 @@ callBackRouter.post("/", async (req, res) => {
 
   console.log("Awaiting to be saved in the database");
   console.log(amountPaid, mpesaReceiptNumber, transactionDate, phoneNo);
-
-  const mpesaCodeExists = await Contribution.findOne({ mpesaReceiptNumber });
-
-  if (mpesaCodeExists) {
-    res.status(400);
-    throw new Error("Invalid Mpesa Code");
-  } else {
-    const payment = await new Contribution({
-      transactionDate,
-      mpesaReceiptNumber,
-      amountPaid,
-      phoneNo,
-    });
-    if (payment) {
-      const savedPayment = await payment.save();
-      res.status(201).json(savedPayment);
-      console.log(savedPayment);
-    } else {
-      res.status(400);
-      throw new Error("Invalid Transaction");
-    }
-  }
 });
 
 module.exports = { callBackRouter };
