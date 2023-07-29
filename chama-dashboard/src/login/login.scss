@@ -1,0 +1,154 @@
+.login-cont{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+
+    .login-left{
+        background-color: #008b8b;
+        flex: 40%;
+        padding: 30px;
+
+        .header-logo-text{
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .left-logo{
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: 100px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: darkslategray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .info{
+            margin: 50px 0 10px 0;
+
+            .h5{
+                color: orange;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            p{
+                color: #fff;
+                font-size: 16px;
+            }
+
+            ul li{
+                padding: 3px;
+                color: #fff;
+                font-size: 16px;
+                list-style-type: circle;
+            }
+        }
+
+        p{
+            color: green;
+            font-size: 22px;
+        }
+    }
+
+    .login-right{
+        background-color: #fff;
+        flex: 60%;
+        display: flex;
+        align-items: center;
+        padding: 0 50px;
+        position: relative;
+
+        .login-wrapper{
+            width: 400px;
+
+            .h6{
+                padding: 10px 3px;
+                font-size: 26px;
+                color: darkcyan;
+            }
+
+
+            .input{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 10px 0;
+                padding: 5px 10px;
+                border: 1px solid gray;
+                border-radius: 25px;
+
+                .input-icon{
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: darkcyan;
+                    border-radius: 50%;
+                    color: #fff;
+                    font-size: 18px !important;
+                }
+
+                input{
+                    font-size: 16px;
+                    padding: 10px;
+                    border: none;
+                    
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+            .login-btn{
+                width: 100%;
+                color: #fff;
+                background-color: darkcyan;
+            }
+
+            .forgot{
+                padding: 10px 0;
+                margin: 0 auto;
+                text-align: center;
+                cursor: pointer;
+                font-size: 14px;
+                color: green;
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+
+        }
+
+        .message-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background-color: darkcyan;
+            cursor: pointer;
+            transition: 0.5s ease all;
+
+            &:hover{
+                background-color: green;
+            }
+        }
+
+    }
+}
