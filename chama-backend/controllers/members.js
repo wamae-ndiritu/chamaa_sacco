@@ -26,7 +26,6 @@ const registerMember = (req, res) => {
 
       db.query(query, [values], (err, data) => {
         if (err) {
-          console.log(err);
           res.status(500).json({ message: "Internal error occurred!" });
         }
         res.status(200).json(data);
@@ -65,6 +64,8 @@ const LoginMember = (req, res) => {
               fullname: data[0].fullname,
               phone_no: data[0].phone_no,
               group_id: data[0].group_id,
+              isDefaultPass: data[0].isDefaultPass,
+              isOfficial: data[0].isOfficial,
               token: generateToken(data[0].member_id),
             });
           } else {
@@ -83,6 +84,7 @@ const LoginMember = (req, res) => {
     }
   });
 };
+
 const getGroupMembers = (req, res) => {};
 const getGroupMember = (req, res) => {};
 const getGroupManagement = (req, res) => {};
