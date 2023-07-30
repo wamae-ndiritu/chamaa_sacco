@@ -20,9 +20,9 @@ const registerMember = (req, res) => {
       const hash = bcrypt.hashSync(phone_no, salt);
 
       const query =
-        "INSERT INTO members(`fullname`,`phone_no`,`password`,`group_id`) VALUES (?)";
+        "INSERT INTO members(`fullname`,`phone_no`,`password`,`group_id`, `isDefaultPass`, `isOfficial`) VALUES (?)";
 
-      const values = [fullname, phone_no, hash, groupId];
+      const values = [fullname, phone_no, hash, groupId, 1, 1];
 
       db.query(query, [values], (err, data) => {
         if (err) {
@@ -85,6 +85,83 @@ const LoginMember = (req, res) => {
   });
 };
 
+const updateProfile = (req, res) => {
+  const memberId = Number(req.params.id);
+  const { fullname, phone_no, password } = req.body;
+
+  let changeDefaultPass = false;
+
+  const query = "SELECT * FROM members WHERE member_id = ?";
+
+  db.query(query, [memberId], (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal error occurred!" });
+    }
+    if (data.length) {
+      let hashPass;
+      if (password) {
+        if (data[0].isDefaultPass) {
+          changeDefaultPass = true;
+        }
+        const salt = bcrypt.genSaltSync(10);
+        hashPass = bcrypt.hashSync(password, salt);
+      }
+
+      const new_fullname = fullname || data[0].fullname;
+      const new_phone_no = phone_no || data[0].phone_no;
+      const new_pass = hashPass || data[0].password;
+      const query =
+        "UPDATE members SET fullname = ?, phone_no = ?,  password = ? WHERE member_id = ?";
+
+      db.query(
+        query,
+        [new_fullname, new_phone_no, new_pass, memberId],
+        (err, data) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "Internal error occurred!" });
+          }
+          if (data) {
+            if (changeDefaultPass) {
+              const query =
+                "UPDATE members SET isDefaultPass = ? WHERE member_id = ?";
+
+              db.query(query, [0, memberId], (err, data) => {
+                if (err) {
+                  return res
+                    .status(500)
+                    .json({ message: "Internal error occurred!" });
+                }
+              });
+            }
+            const query = "SELECT * FROM members WHERE member_id = ?";
+
+            db.query(query, [memberId], (err, data) => {
+              if (err) {
+                return res
+                  .status(500)
+                  .json({ message: "Internal error occurred!" });
+              }
+              if (data.length) {
+                return res.status(200).json({
+                  member_id: data[0].member_id,
+                  fullname: data[0].fullname,
+                  phone_no: data[0].phone_no,
+                  group_id: data[0].group_id,
+                  isDefaultPass: data[0].isDefaultPass,
+                  isOfficial: data[0].isOfficial,
+                  token: generateToken(data[0].member_id),
+                });
+              }
+            });
+          }
+        }
+      );
+    }
+  });
+};
+
 const getGroupMembers = (req, res) => {};
 const getGroupMember = (req, res) => {};
 const getGroupManagement = (req, res) => {};
@@ -95,4 +172,5 @@ module.exports = {
   getGroupMember,
   getGroupMembers,
   getGroupManagement,
+  updateProfile,
 };

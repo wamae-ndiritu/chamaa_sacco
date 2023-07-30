@@ -7,6 +7,7 @@ const {
   getGroupMember,
   getGroupMembers,
   getGroupManagement,
+  updateProfile,
 } = require("../controllers/members");
 
 const memberRouter = express.Router();
@@ -18,6 +19,7 @@ memberRouter.post("/register", registerMember);
 // LOGIN
 
 memberRouter.post("/login", LoginMember);
+memberRouter.put("/:id", updateProfile);
 
 //GET ALL MEMBERS
 
