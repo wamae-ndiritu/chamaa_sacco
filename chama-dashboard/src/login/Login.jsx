@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.scss";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import CallIcon from "@mui/icons-material/Call";
 import KeyIcon from "@mui/icons-material/Key";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { login } from "../redux/actions/memberActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const { userInfo } = useSelector((state) => state.member);
+  const [loginDetails, setLoginDetails] = useState({
+    group_name: "",
+    phone_no: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setLoginDetails({ ...loginDetails, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(loginDetails, dispatch);
+  };
+
+  console.log(userInfo);
   return (
     <div className="login-cont">
       <div className="login-left">
@@ -35,21 +56,38 @@ const Login = () => {
             <div className="input-icon">
               <Diversity2Icon />
             </div>
-            <input type="text" placeholder="Group Name" />
+            <input
+              type="text"
+              placeholder="Group Name"
+              name="group_name"
+              onChange={handleChange}
+            />
           </div>
           <div className="input">
             <div className="input-icon">
               <CallIcon />
             </div>
-            <input type="text" placeholder="Phone" />
+            <input
+              type="text"
+              placeholder="Phone"
+              name="phone_no"
+              onChange={handleChange}
+            />
           </div>
           <div className="input">
             <div className="input-icon">
               <KeyIcon />
             </div>
-            <input type="password" placeholder="password" />
+            <input
+              type="password"
+              placeholder="password"
+              name="password"
+              onChange={handleChange}
+            />
           </div>
-          <button className="login-btn">Log In</button>
+          <button className="login-btn" onClick={handleSubmit}>
+            Log In
+          </button>
           <p className="forgot">Forgot your password?</p>
         </div>
         <div className="message-badge">

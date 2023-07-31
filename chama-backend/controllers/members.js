@@ -36,6 +36,7 @@ const registerMember = (req, res) => {
 
 const LoginMember = (req, res) => {
   const { phone_no, group_name, password } = req.body;
+  console.log(req.body);
   // check group existence
   const query = "SELECT * FROM groups WHERE group_name = ?";
 

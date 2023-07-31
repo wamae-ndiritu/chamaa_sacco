@@ -1,1 +1,1 @@
-export const URL = "https://chamaa-sacco-api.onrender.com";
+export const URL = "http://localhost:5000";
