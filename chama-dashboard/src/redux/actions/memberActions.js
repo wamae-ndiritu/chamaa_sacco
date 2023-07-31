@@ -8,6 +8,7 @@ export const login = async (details, dispatch) => {
   try {
     const { data } = await axios.post(`${URL}/api/members/login`, details);
     dispatch(loginSuccess(data));
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (err) {
     dispatch(loginFail(err.response ? err.response.data.message : err.message));
   }

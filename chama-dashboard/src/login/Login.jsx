@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login.scss";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import CallIcon from "@mui/icons-material/Call";
@@ -11,10 +12,11 @@ import Message from "../utilComponents/Message";
 import { validateInputsError } from "../InputValidation";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isInputError, setIsInputError] = useState(false);
 
-  const { userInfo, loading, error } = useSelector((state) => state.member);
+  const { success, loading, error } = useSelector((state) => state.member);
   const [loginDetails, setLoginDetails] = useState({
     group_name: "",
     phone_no: "",
@@ -33,6 +35,12 @@ const Login = () => {
       login(loginDetails, dispatch);
     }
   };
+
+  useEffect(() => {
+    if (success) {
+      navigate("/");
+    }
+  }, [navigate, success]);
 
   return (
     <div className="login-cont">
