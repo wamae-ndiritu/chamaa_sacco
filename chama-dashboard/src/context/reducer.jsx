@@ -39,5 +39,15 @@ export const reducer = (state, action) => {
       ...state,
       isFundModalOpen: false,
     };
+  } else if (action.type === "OPEN_SIDEBAR") {
+    return {
+      ...state,
+      isSideBarOpen: true,
+    };
+  } else if (action.type === "CLOSE_SIDEBAR") {
+    return {
+      ...state,
+      isSideBarOpen: false,
+    };
   }
 };

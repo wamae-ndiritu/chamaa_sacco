@@ -18,6 +18,7 @@ const initialState = {
   isFundModalOpen: false,
   members: [],
   admins: [],
+  isSideBarOpen: false,
 };
 
 function ScrollProvider({ children }) {
@@ -34,6 +35,14 @@ function ScrollProvider({ children }) {
 
   const openFundModal = () => {
     dispatch({ type: "OPEN_FUND_MODAL" });
+  };
+
+  const openSidebar = () => {
+    dispatch({ type: "OPEN_SIDEBAR" });
+  };
+
+  const closeSidebar = () => {
+    dispatch({ type: "CLOSE_SIDEBAR" });
   };
 
   const getMembers = () => {
@@ -91,6 +100,8 @@ function ScrollProvider({ children }) {
         closeMessageModal,
         openFundModal,
         closeFundModal,
+        openSidebar,
+        closeSidebar,
       }}
     >
       {children}

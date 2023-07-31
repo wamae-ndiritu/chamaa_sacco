@@ -172,43 +172,6 @@ a {
   .logo {
     margin: 20px 0;
   }
-  .logo .h5 {
-    display: none;
-  }
-  .sidebar-wrapper {
-    width: 70px !important;
-    padding: 0;
-  }
-
-  .sidebar {
-    width: 70px;
-    padding: 0;
-  }
-
-  .sidebar-item .h5 {
-    display: none;
-  }
-
-  .link .h6 {
-    display: none;
-  }
-
-  .link-icon {
-    font-size: 28px !important;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .logout-btn {
-    width: 50px;
-    margin: 0 auto;
-    margin-top: 40px;
-  }
-
-  .logout-btn .h6 {
-    display: none;
-  }
 }
 
 /* Top Header */
@@ -230,6 +193,10 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+}
+
+.menu-icon {
+  display: none;
 }
 
 .topheader-wrapper .right {
@@ -502,6 +469,22 @@ a {
     right: 10px !important;
   }
 
+  .top-header {
+    height: 80px;
+  }
+
+  .menu-icon {
+    width: 40px;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid var(--lig-darkcyan);
+  }
+
   .profile {
     display: flex;
     flex-direction: row-reverse;
@@ -509,25 +492,55 @@ a {
     justify-content: center;
   }
 
-  .profile img {
-    width: 40px;
-    height: 40px;
-  }
-
   .profile-text .h6 {
     font-size: 14px;
-    background-color: var(--lig-darkcyan);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 20px;
     margin: auto 0;
-  }
-
-  .profile .member-role {
-    display: none;
   }
 
   .top-header-icons {
     display: none;
+  }
+
+  .sidebar-wrapper {
+    z-index: 99;
+    max-width: 0;
+    flex: 60% !important;
+  }
+
+  .sidebar-menu {
+    height: calc(65vh - 30px);
+  }
+
+  .sidebar {
+    width: 80%;
+    top: 80px;
+  }
+
+  .logo {
+    display: flex !important;
+    position: relative;
+  }
+
+  .menu-close-icon {
+    width: 40px;
+    height: 30px;
+    border: 1px solid var(--lig-darkcyan);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    /* top: 0; */
+    bottom: 10px !important;
+    right: 0;
+    margin: auto 0;
+  }
+
+  .logout-btn {
+    margin-top: 10px;
+    margin-bottom: 20px !important;
   }
 }

@@ -2,11 +2,14 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import LogoutIcon from "@mui/icons-material/Logout";
+import CloseIcon from "@mui/icons-material/Close";
 import { navs } from "./sidebarData";
 import { Link, useLocation } from "react-router-dom";
 import { logout } from "../redux/actions/memberActions";
+import { useGlobalContext } from "../context/context";
 
 const SideBar = () => {
+  const { closeSidebar } = useGlobalContext();
   const dispatch = useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -22,6 +25,9 @@ const SideBar = () => {
           <Diversity3Icon />
         </div>
         <h5 className="h5">Chama Portal</h5>
+        <div className="menu-close-icon" onClick={() => closeSidebar()}>
+          <CloseIcon />
+        </div>
       </div>
       <div className="sidebar-menu">
         {navs.map((navItem) => {

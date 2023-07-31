@@ -2,11 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useGlobalContext } from "../context/context";
+import SideBar from "./SideBar";
 
 const TopHeader = () => {
   const { userInfo } = useSelector((state) => state.member);
-  const { openMessageModal } = useGlobalContext();
+  const { openMessageModal, isSideBarOpen, openSidebar } = useGlobalContext();
 
   const first_name = userInfo?.fullname.split(" ")[0];
 
@@ -18,6 +20,11 @@ const TopHeader = () => {
       <div className="topheader-wrapper">
         <div className="left">
           <h5 className="h5">Chama Sacco</h5>
+          {!isSideBarOpen && (
+            <div className="menu-icon" onClick={() => openSidebar()}>
+              <MenuIcon />
+            </div>
+          )}
         </div>
         <div className="right">
           <div className="top-header-icons">
@@ -48,6 +55,7 @@ const TopHeader = () => {
           </div>
         </div>
       </div>
+      {isSideBarOpen && <SideBar />}
     </div>
   );
 };

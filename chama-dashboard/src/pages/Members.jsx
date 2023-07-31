@@ -4,7 +4,7 @@ import Modal from "../modal/Modal";
 import { useGlobalContext } from "../context/context";
 
 const Members = () => {
-  const { openModal, members, getMembers } = useGlobalContext();
+  const { members, getMembers } = useGlobalContext();
 
   const formattedData = members?.map((member) => {
     return {
@@ -12,10 +12,6 @@ const Members = () => {
       id: member._id,
     };
   });
-
-  const handleModal = () => {
-    openModal();
-  };
 
   useEffect(() => {
     getMembers();
