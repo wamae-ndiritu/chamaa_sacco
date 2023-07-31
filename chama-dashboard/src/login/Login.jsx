@@ -8,9 +8,11 @@ import { login } from "../redux/actions/memberActions";
 import { useDispatch, useSelector } from "react-redux";
 import LinearDotted from "../utilComponents/spinners/LinearDotted";
 import Message from "../utilComponents/Message";
+import { validateInputsError } from "../InputValidation";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const [isInputError, setIsInputError] = useState(false);
 
   const { userInfo, loading, error } = useSelector((state) => state.member);
   const [loginDetails, setLoginDetails] = useState({
@@ -25,10 +27,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(loginDetails, dispatch);
+    const error = validateInputsError(loginDetails);
+    setIsInputError(error);
+    if (error === false) {
+      login(loginDetails, dispatch);
+    }
   };
 
-  console.log(userInfo);
   return (
     <div className="login-cont">
       <div className="login-left">
@@ -54,7 +59,9 @@ const Login = () => {
       <div className="login-right">
         <div className="login-wrapper">
           <h6 className="h6">Login to access your chamaa</h6>
-          {loading ? (
+          {isInputError ? (
+            <Message variant="alert-danger">All inputs required!</Message>
+          ) : loading ? (
             <LinearDotted />
           ) : (
             error && <Message variant="alert-danger">{error}</Message>
