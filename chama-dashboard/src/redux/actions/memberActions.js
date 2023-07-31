@@ -1,5 +1,10 @@
 import axios from "axios";
-import { loginStart, loginSuccess, loginFail } from "../slices/memberSlice";
+import {
+  loginStart,
+  loginSuccess,
+  loginFail,
+  logoutUser,
+} from "../slices/memberSlice";
 import { URL } from "../../Url";
 
 export const login = async (details, dispatch) => {
@@ -12,4 +17,9 @@ export const login = async (details, dispatch) => {
   } catch (err) {
     dispatch(loginFail(err.response ? err.response.data.message : err.message));
   }
+};
+
+export const logout = (dispatch) => {
+  dispatch(logoutUser());
+  localStorage.removeItem("userInfo");
 };

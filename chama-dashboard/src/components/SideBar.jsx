@@ -1,12 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { navs } from "./sidebarData";
 import { Link, useLocation } from "react-router-dom";
+import { logout } from "../redux/actions/memberActions";
 
 const SideBar = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const handleLogout = () => {
+    logout(dispatch);
+  };
 
   return (
     <div className="sidebar">
@@ -44,7 +51,7 @@ const SideBar = () => {
           );
         })}
       </div>
-      <div className="logout-btn">
+      <div className="logout-btn" onClick={handleLogout}>
         <LogoutIcon className="link-icon" />
         <h6 className="h6">Logout</h6>
       </div>
