@@ -184,9 +184,6 @@ a {
   .sidebar-item .h5 {
     display: none;
   }
-  .main {
-    /* flex: calc(100% - 80px); */
-  }
 
   .link .h6 {
     display: none;
@@ -287,16 +284,35 @@ a {
   margin: auto 0;
 }
 
-.profile-text span {
+.profile-text .h6 .first_name {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.profile-text .member-role {
   text-align: center;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  margin-top: 5px;
+  padding: auto 0;
   cursor: pointer;
+  background-color: #9edada;
+  width: 80px;
+  height: 20px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-text .official {
+  background-color: orange;
 }
 
 .profile img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
 }

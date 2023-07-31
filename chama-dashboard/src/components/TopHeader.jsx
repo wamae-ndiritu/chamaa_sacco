@@ -1,10 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useGlobalContext } from "../context/context";
 
 const TopHeader = () => {
+  const { userInfo } = useSelector((state) => state.member);
   const { openMessageModal } = useGlobalContext();
+
+  const first_name = userInfo?.fullname.split(" ")[0];
+  console.log(first_name);
 
   const handleNotification = () => {
     openMessageModal();
@@ -27,12 +32,19 @@ const TopHeader = () => {
           </div>
           <div className="profile">
             <img
-              src="https://ocdn.eu/pulscms-transforms/1/mJ-k9kuTURBXy8wNGMxYWM0Mi1kN2YyLTQzZGEtYjZlYy03NTE4NzUwYTk3ODUuanBlZ5GTBc0DFs0Brt4AAaEwBQ"
+              src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
               alt="profile"
             />
             <div className="profile-text">
-              <h6 className="h6">Elon Musk</h6>
-              <span>Admin</span>
+              <h6 className="h6">
+                Hi, <span className="first_name">{first_name} &#128075;</span>
+              </h6>
+
+              {userInfo?.isOfficial ? (
+                <span className="member-role official">Official</span>
+              ) : (
+                <span className="member-role">Member</span>
+              )}
             </div>
           </div>
         </div>
