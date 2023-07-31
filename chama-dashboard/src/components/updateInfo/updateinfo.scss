@@ -1,0 +1,198 @@
+.reset-pass-cont{
+    width: 100%;
+    
+
+    .reset-heroe{
+        width: 100%;
+        height: 50vh;
+        position: relative;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .reset-heroe-overlay{
+        background-color: darkcyan;
+        position: absolute;
+        height: 50vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0.8;
+        padding: 30px;
+
+
+        .h5{
+            color: #fff;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .heroe-content{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            p{
+                max-width: 400px;
+                margin-top: 50px;
+                color: #fff;
+                padding: 3px;
+                font-size: 16px;
+            }
+
+
+            ul{
+                max-width: 300px;
+                margin-top: 50px;
+                color: #fff;
+                font-size: 16px;
+                padding: 3px;
+                list-style-type: circle;
+                letter-spacing: .6px;
+
+                .h6{
+                    color: green;
+                    text-align: center;
+                    background-color: #fff;
+                    padding: 10px;
+                    border: none;
+                    border-bottom: 5px solid orange;
+                    padding: 0;
+                    font-size: 18px;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .heroe-note{
+            color: orange;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
+
+    .reset-form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .reset-form-wrapper{
+            background-color: #fff;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin-top: -30px;
+            z-index: 9;
+
+
+            .h5{
+                color: #fff;
+                background-color: darkcyan;
+                border-bottom: 5px solid orange;
+                padding: 5px;
+                width: 60%;
+                text-align: center;
+            }
+
+            p{
+                width: 60%;
+                font-size: 14px;
+                margin-bottom: 0;
+                color: gray;
+            }
+
+
+            .reset-input{
+                border-bottom: 1px solid gray;
+                width: 60%;
+                margin: 10px 0;
+
+                input{
+                    padding: 10px;
+                    font-size: 16px;
+                    width: 100%;
+                    border: none;
+
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+            .toggle-pass{
+                width: 60%;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                cursor: pointer;
+
+                p{
+                    margin: auto 0;
+                    padding: 0;
+                }
+            }
+
+            .reset-btn{
+                background-color: darkcyan;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 16px;
+                width: 60%;
+                margin: 10px 0;
+            }
+            
+        }
+    }
+}
+
+@media (max-width: 768.5px){
+    .reset-heroe{
+        height: 50vh !important;
+    }
+    .reset-heroe-overlay{
+        height: 70vh !important;
+
+        .heroe-content{
+            p{
+                margin-top: 10px !important;
+            }
+            
+            ul{
+                margin-top: 10px !important;
+            }
+        }
+    }
+
+        .reset-form-wrapper{
+            width: 90% !important;
+            margin-top: 50px !important;
+
+            .h5{
+                width: 80% !important;
+            }
+
+            p{
+                width: 80% !important
+            }
+
+            .reset-input{
+                width: 80% !important
+            }
+
+            .toggle-pass{
+                width: 80% !important
+            }
+
+            .reset-btn{
+                width: 80% !important;
+            }
+        }
+}

@@ -22,6 +22,7 @@ import SideBar from "./components/SideBar";
 import TopHeader from "./components/TopHeader";
 import Login from "./login/Login";
 import { useSelector } from "react-redux";
+import CreatePassword from "./components/updateInfo/CreatePassword";
 
 // Layout component for all pages except the login page
 const MainLayout = () => {
@@ -50,6 +51,7 @@ function App() {
       <Routes>
         {/* Login route without sidebar and TopHeader */}
         <Route path="/login" element={<Login />} />
+        <Route path="/members/:id/set-password" element={<CreatePassword />} />
         {/* Other routes using the MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Dashboard />} />

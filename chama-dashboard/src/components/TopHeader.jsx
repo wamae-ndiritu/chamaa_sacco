@@ -9,7 +9,6 @@ const TopHeader = () => {
   const { openMessageModal } = useGlobalContext();
 
   const first_name = userInfo?.fullname.split(" ")[0];
-  console.log(first_name);
 
   const handleNotification = () => {
     openMessageModal();
