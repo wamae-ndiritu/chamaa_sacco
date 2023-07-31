@@ -16,7 +16,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const [isInputError, setIsInputError] = useState(false);
 
-  const { success, loading, error } = useSelector((state) => state.member);
+  const { userInfo, success, loading, error } = useSelector(
+    (state) => state.member
+  );
   const [loginDetails, setLoginDetails] = useState({
     group_name: "",
     phone_no: "",
@@ -39,8 +41,10 @@ const Login = () => {
   useEffect(() => {
     if (success) {
       navigate("/");
+    } else if (userInfo?.token) {
+      navigate("/");
     }
-  }, [navigate, success]);
+  }, [navigate, success, userInfo]);
 
   return (
     <div className="login-cont">

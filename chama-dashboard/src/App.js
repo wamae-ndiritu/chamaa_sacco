@@ -21,11 +21,12 @@ import Member from "./pages/Member";
 import SideBar from "./components/SideBar";
 import TopHeader from "./components/TopHeader";
 import Login from "./login/Login";
+import { useSelector } from "react-redux";
 
 // Layout component for all pages except the login page
 const MainLayout = () => {
-  const isAdmin = true;
-  if (isAdmin) {
+  const { userInfo } = useSelector((state) => state.member);
+  if (userInfo?.token) {
     return (
       <div className="cont">
         <div className="sidebar-wrapper">
