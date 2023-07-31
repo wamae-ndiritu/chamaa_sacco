@@ -24,6 +24,14 @@ import Login from "./login/Login";
 import { useSelector } from "react-redux";
 import CreatePassword from "./components/updateInfo/CreatePassword";
 
+const ResetPassLayout = () => {
+  const { userInfo } = useSelector((state) => state.member);
+  if (userInfo?.isDefaultPass) {
+    return <Outlet />;
+  }
+  return <Navigate to={"/"} />;
+};
+
 // Layout component for all pages except the login page
 const MainLayout = () => {
   const { userInfo } = useSelector((state) => state.member);
@@ -51,7 +59,12 @@ function App() {
       <Routes>
         {/* Login route without sidebar and TopHeader */}
         <Route path="/login" element={<Login />} />
-        <Route path="/members/:id/set-password" element={<CreatePassword />} />
+        <Route element={<ResetPassLayout />}>
+          <Route
+            path="/members/:id/set-password"
+            element={<CreatePassword />}
+          />
+        </Route>
         {/* Other routes using the MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Dashboard />} />
