@@ -6,11 +6,13 @@ import KeyIcon from "@mui/icons-material/Key";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { login } from "../redux/actions/memberActions";
 import { useDispatch, useSelector } from "react-redux";
+import LinearDotted from "../utilComponents/spinners/LinearDotted";
+import Message from "../utilComponents/Message";
 
 const Login = () => {
   const dispatch = useDispatch();
 
-  const { userInfo } = useSelector((state) => state.member);
+  const { userInfo, loading, error } = useSelector((state) => state.member);
   const [loginDetails, setLoginDetails] = useState({
     group_name: "",
     phone_no: "",
@@ -52,6 +54,11 @@ const Login = () => {
       <div className="login-right">
         <div className="login-wrapper">
           <h6 className="h6">Login to access your chamaa</h6>
+          {loading ? (
+            <LinearDotted />
+          ) : (
+            error && <Message variant="alert-danger">{error}</Message>
+          )}
           <div className="input">
             <div className="input-icon">
               <Diversity2Icon />
