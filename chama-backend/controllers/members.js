@@ -50,7 +50,6 @@ const LoginMember = (req, res) => {
         if (err) {
           return res.status(500).json({ message: "Internal error occurred!" });
         }
-        console.log(data.length);
         if (data.length) {
           //Check password
           const isPasswordCorrect = bcrypt.compareSync(
@@ -88,6 +87,7 @@ const LoginMember = (req, res) => {
 const updateProfile = (req, res) => {
   const memberId = Number(req.params.id);
   const { fullname, phone_no, password } = req.body;
+  const pass = password || "";
 
   let changeDefaultPass = false;
 
@@ -99,12 +99,12 @@ const updateProfile = (req, res) => {
     }
     if (data.length) {
       let hashPass;
-      if (password) {
+      if (pass !== "") {
         if (data[0].isDefaultPass) {
           changeDefaultPass = true;
         }
         const salt = bcrypt.genSaltSync(10);
-        hashPass = bcrypt.hashSync(password, salt);
+        hashPass = bcrypt.hashSync(pass, salt);
       }
 
       const new_fullname = fullname || data[0].fullname;
