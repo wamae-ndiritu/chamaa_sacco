@@ -14,8 +14,6 @@ function MessageModal() {
     return phoneNo.push(`+${member.phone}`);
   });
 
-  console.log(phoneNo);
-
   const handleSubmit = (e) => {
     axios
       .post(`https://ats-sms-api.onrender.com/sms`, {

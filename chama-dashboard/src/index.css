@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+:root {
+  --lig-darkcyan: #9edada;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -324,7 +328,8 @@ a {
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
-  /* background-color: antiquewhite; */
+  min-height: 80vh;
+  position: relative;
 }
 
 .widget-small {
@@ -411,7 +416,6 @@ a {
 .savings-chart {
   padding: 20px;
   margin-top: 20px;
-  /* height: 350px; */
   cursor: pointer;
 }
 
@@ -467,4 +471,63 @@ a {
   margin-bottom: 20px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 438.5px) {
+  .main-cont {
+    flex: 100%;
+    display: flex;
+    justify-content: center;
+    height: 95%;
+  }
+
+  .new-transactions-cont {
+    width: 360px;
+  }
+
+  .widget-small,
+  .user-card,
+  .target-card,
+  .savings-chart,
+  .new-member-cont,
+  .w-mobile {
+    width: 360px;
+  }
+
+  .chart-cont {
+    height: 500% !important;
+  }
+
+  .add-badge {
+    right: 10px !important;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .profile img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .profile-text .h6 {
+    font-size: 14px;
+    background-color: var(--lig-darkcyan);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: auto 0;
+  }
+
+  .profile .member-role {
+    display: none;
+  }
+
+  .top-header-icons {
+    display: none;
+  }
 }

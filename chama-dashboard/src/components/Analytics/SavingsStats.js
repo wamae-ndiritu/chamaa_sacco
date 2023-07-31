@@ -32,8 +32,8 @@ const data = {
 const LineChart = () => {
   <Chart />;
   return (
-    <div>
-      <Line data={data} />
+    <div className="chart-cont">
+      <Line data={data} className="chart-item" />
     </div>
   );
 };

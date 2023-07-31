@@ -22,11 +22,8 @@ const Members = () => {
   }, [getMembers]);
 
   return (
-    <div>
+    <div className="w-mobile">
       <Modal />
-      <button className="add-btn" onClick={handleModal}>
-        Add Member
-      </button>
       <MembersList data={formattedData} />
     </div>
   );

@@ -2,6 +2,7 @@ import "./membersList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 
 export default function MembersList({ data }) {
   const handleDelete = (id) => {
@@ -41,14 +42,19 @@ export default function MembersList({ data }) {
   ];
 
   return (
-    <div className="userList">
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        checkboxSelection
-      />
-    </div>
+    <>
+      <div className="userList">
+        <DataGrid
+          rows={data}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          checkboxSelection
+        />
+      </div>
+      <div className="add-badge">
+        <PersonAddAltIcon className="add-icon" />
+      </div>
+    </>
   );
 }

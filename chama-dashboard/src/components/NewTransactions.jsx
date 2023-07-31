@@ -62,19 +62,6 @@ const columns = [
 ];
 
 const NewTransactions = () => {
-  //   const getRowClassName = (params) => {
-  //     const transactionType = params.row.col3;
-  //     const transactionStatus = params.row.col4;
-
-  //     if (transactionType === "Savings") {
-  //       return "bg-warning";
-  //     } else if (transactionType === "Donation") {
-  //       return "bg-info";
-  //     } else if (transactionType === "Loan") {
-  //       return "bg-success";
-  //     }
-  //     return "";
-  //   };
   return (
     <div className="new-transactions-cont mt-3 shadow-lg">
       <h5 className="h5 text-success">New Transactions</h5>

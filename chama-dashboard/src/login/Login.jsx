@@ -44,7 +44,7 @@ const Login = () => {
     } else if (userInfo?.token) {
       navigate("/");
     }
-  }, [navigate, success, userInfo]);
+  }, [navigate, success, userInfo.token]);
 
   return (
     <div className="login-cont">

@@ -7,7 +7,7 @@ const DashStats = () => {
     <div className="container">
       <div className="row">
         <div className="col-lg-7 col-md-7">
-          <div className="shadow-lg savings-chart">
+          <div className="shadow-lg savings-chart line-chart-cont">
             <LineChart />
           </div>
         </div>

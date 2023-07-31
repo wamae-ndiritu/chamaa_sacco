@@ -29,3 +29,23 @@
   color: red;
   cursor: pointer;
 }
+
+.add-badge {
+  position: absolute;
+  bottom: 0;
+  right: 50px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-size: 30px !important;
+  background-color: darkcyan;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.add-badge .add-icon {
+  font-size: 38px;
+}
