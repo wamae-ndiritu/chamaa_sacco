@@ -4,6 +4,9 @@ import {
   loginSuccess,
   loginFail,
   logoutUser,
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileFail,
 } from "../slices/memberSlice";
 import { URL } from "../../Url";
 
@@ -22,4 +25,18 @@ export const login = async (details, dispatch) => {
 export const logout = (dispatch) => {
   dispatch(logoutUser());
   localStorage.removeItem("userInfo");
+};
+
+export const updateProfile = async (id, details, dispatch) => {
+  dispatch(updateProfileStart());
+
+  try {
+    const { data } = await axios.put(`${URL}/api/members/${id}`, details);
+    dispatch(updateProfileSuccess(data));
+    localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (err) {
+    dispatch(
+      updateProfileFail(err.response ? err.response.data.message : err.message)
+    );
+  }
 };

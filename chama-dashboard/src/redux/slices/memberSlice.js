@@ -11,6 +11,7 @@ export const memberSlice = createSlice({
     loading: false,
     error: null,
     success: false,
+    updateSuccess: false,
   },
   reducers: {
     loginStart: (state) => {
@@ -30,9 +31,29 @@ export const memberSlice = createSlice({
     logoutUser: (state) => {
       state.userInfo = {};
     },
+    updateProfileStart: (state) => {
+      state.loading = true;
+      state.updateSuccess = false;
+    },
+    updateProfileSuccess: (state, action) => {
+      state.loading = false;
+      state.updateSuccess = true;
+      state.userInfo = action.payload;
+    },
+    updateProfileFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { loginStart, loginSuccess, loginFail, logoutUser } =
-  memberSlice.actions;
+export const {
+  loginStart,
+  loginSuccess,
+  loginFail,
+  logoutUser,
+  updateProfileStart,
+  updateProfileSuccess,
+  updateProfileFail,
+} = memberSlice.actions;
 export default memberSlice.reducer;
