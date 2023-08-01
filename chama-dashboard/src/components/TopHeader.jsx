@@ -15,6 +15,7 @@ const TopHeader = () => {
   const handleNotification = () => {
     openMessageModal();
   };
+
   return (
     <div className="top-header">
       <div className="topheader-wrapper">

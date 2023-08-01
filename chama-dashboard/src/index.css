@@ -199,6 +199,10 @@ a {
   display: none;
 }
 
+.menu-close-icon {
+  display: none;
+}
+
 .topheader-wrapper .right {
   display: flex;
   justify-content: flex-end;
@@ -443,6 +447,7 @@ a {
 @media (max-width: 438.5px) {
   .main-cont {
     flex: 100%;
+    margin-top: 100px !important;
     display: flex;
     justify-content: center;
     height: 95%;

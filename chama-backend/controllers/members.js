@@ -7,7 +7,7 @@ const registerMember = (req, res) => {
 
   const groupId = Number(group_id);
 
-  const query = "SELECT * FROM members WHERE phone_no = ? OR fullname = ?";
+  const query = "SELECT * FROM `members` WHERE phone_no = ? OR fullname = ?";
 
   db.query(query, [phone_no, fullname], (err, data) => {
     if (err) {
@@ -20,9 +20,9 @@ const registerMember = (req, res) => {
       const hash = bcrypt.hashSync(phone_no, salt);
 
       const query =
-        "INSERT INTO members(`fullname`,`phone_no`,`password`,`group_id`, `isDefaultPass`, `isOfficial`) VALUES (?)";
+        "INSERT INTO `members`(`fullname`,`phone_no`,`password`,`group_id`, `isDefaultPass`, `isOfficial`) VALUES (?)";
 
-      const values = [fullname, phone_no, hash, groupId, 1, 1];
+      const values = [fullname, phone_no, hash, groupId, 1, 0];
 
       db.query(query, [values], (err, data) => {
         if (err) {
@@ -36,9 +36,8 @@ const registerMember = (req, res) => {
 
 const LoginMember = (req, res) => {
   const { phone_no, group_name, password } = req.body;
-  console.log(req.body);
   // check group existence
-  const query = "SELECT * FROM groups WHERE group_name = ?";
+  const query = "SELECT * FROM `groups` WHERE group_name = ?";
 
   db.query(query, [group_name], (err, data) => {
     if (err) {
@@ -46,7 +45,8 @@ const LoginMember = (req, res) => {
     }
     if (data.length) {
       // match user with group
-      const query = "SELECT * FROM members WHERE phone_no = ? AND group_id = ?";
+      const query =
+        "SELECT * FROM `members` WHERE phone_no = ? AND group_id = ?";
       db.query(query, [phone_no, data[0].group_id], (err, data) => {
         if (err) {
           return res.status(500).json({ message: "Internal error occurred!" });
@@ -92,7 +92,7 @@ const updateProfile = (req, res) => {
 
   let changeDefaultPass = false;
 
-  const query = "SELECT * FROM members WHERE member_id = ?";
+  const query = "SELECT * FROM `members` WHERE member_id = ?";
 
   db.query(query, [memberId], (err, data) => {
     if (err) {
@@ -112,7 +112,7 @@ const updateProfile = (req, res) => {
       const new_phone_no = phone_no || data[0].phone_no;
       const new_pass = hashPass || data[0].password;
       const query =
-        "UPDATE members SET fullname = ?, phone_no = ?,  password = ? WHERE member_id = ?";
+        "UPDATE `members` SET fullname = ?, phone_no = ?,  password = ? WHERE member_id = ?";
 
       db.query(
         query,
@@ -126,7 +126,7 @@ const updateProfile = (req, res) => {
           if (data) {
             if (changeDefaultPass) {
               const query =
-                "UPDATE members SET isDefaultPass = ? WHERE member_id = ?";
+                "UPDATE `members` SET isDefaultPass = ? WHERE member_id = ?";
 
               db.query(query, [0, memberId], (err, data) => {
                 if (err) {
@@ -136,7 +136,7 @@ const updateProfile = (req, res) => {
                 }
               });
             }
-            const query = "SELECT * FROM members WHERE member_id = ?";
+            const query = "SELECT * FROM `members` WHERE member_id = ?";
 
             db.query(query, [memberId], (err, data) => {
               if (err) {

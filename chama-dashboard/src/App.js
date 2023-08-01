@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -54,6 +54,9 @@ const MainLayout = () => {
 };
 
 function App() {
+  useEffect(() => {
+    console.log("Hey");
+  }, []);
   return (
     <Router>
       <Routes>
