@@ -117,7 +117,7 @@ const Login = () => {
           <p className="forgot">Forgot your password?</p>
         </div>
         <div className="message-badge">
-          <ChatBubbleOutlineIcon />
+          <ChatBubbleOutlineIcon className="message-badge-icon" />
         </div>
       </div>
     </div>
