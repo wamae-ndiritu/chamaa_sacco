@@ -53,7 +53,7 @@ function MemberModal() {
       closeMemberModal();
       listMembers(groupId, dispatch);
     }
-  }, [dispatch, register_success, closeMemberModal]);
+  }, [dispatch, groupId, register_success, closeMemberModal]);
 
   return (
     <div>
