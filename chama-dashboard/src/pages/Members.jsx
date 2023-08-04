@@ -11,11 +11,9 @@ const Members = () => {
   const formattedData = members?.map((member) => {
     return {
       ...member,
-      id: member._id,
+      id: member.member_id,
     };
   });
-
-  console.log(members);
 
   const groupId = userInfo?.group_id;
 

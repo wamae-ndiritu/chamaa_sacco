@@ -1,10 +1,12 @@
+import { useSelector } from "react-redux";
 import "./membersList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+import { useGlobalContext } from "../../context/context";
 
 export default function MembersList({ data }) {
+  const { userInfo } = useSelector((state) => state.member);
   const handleDelete = (id) => {
     console.log("deleting soon...");
   };
@@ -13,14 +15,38 @@ export default function MembersList({ data }) {
     {
       field: "id",
       headerName: "S/NO",
-      width: 250,
+      width: 30,
     },
     {
       field: "fullname",
       headerName: "Member",
-      width: 250,
+      width: 200,
     },
-    { field: "phone", headerName: "Phone", width: 200 },
+    {
+      field: "phone_no",
+      headerName: "Phone",
+      width: 150,
+      renderCell: (params) => {
+        const phone = params.row.phone_no.replace("254", "0");
+        return <>{phone}</>;
+      },
+    },
+    {
+      field: "role",
+      headerName: "Role",
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <>
+            {params.row.isOfficial ? (
+              <h6 className="bg-success role">Official</h6>
+            ) : (
+              <h6 className="bg-warning role">Member</h6>
+            )}
+          </>
+        );
+      },
+    },
     {
       field: "action",
       headerName: "Action",
@@ -28,13 +54,14 @@ export default function MembersList({ data }) {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/members/" + params.row.id}>
-              <button className="userListEdit">Edit</button>
-            </Link>
-            <DeleteIcon
-              className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
-            />
+            {userInfo?.isOfficial ? (
+              <DeleteIcon
+                className="userListDelete"
+                onClick={() => handleDelete(params.row.id)}
+              />
+            ) : (
+              <div> </div>
+            )}
           </>
         );
       },

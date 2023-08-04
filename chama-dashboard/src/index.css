@@ -444,6 +444,13 @@ a {
   cursor: pointer;
 }
 
+.role {
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 30px;
+  margin: auto 0;
+}
+
 @media (max-width: 438.5px) {
   .main-cont {
     flex: 100%;
