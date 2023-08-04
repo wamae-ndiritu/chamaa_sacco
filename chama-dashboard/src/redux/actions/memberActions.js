@@ -10,6 +10,9 @@ import {
   getMembersStart,
   getMembersSuccess,
   getMembersFail,
+  registerMemberStart,
+  registerMemberSuccess,
+  registerMemberFail,
 } from "../slices/memberSlice";
 import { URL } from "../../Url";
 
@@ -52,6 +55,19 @@ export const listMembers = async (id, dispatch) => {
   } catch (err) {
     dispatch(
       getMembersFail(err.response ? err.response.data.message : err.message)
+    );
+  }
+};
+
+export const registerMember = async (details, dispatch) => {
+  dispatch(registerMemberStart());
+  try {
+    const { data } = await axios.post(`${URL}/api/members/register`, details);
+    dispatch(registerMemberSuccess(data));
+  } catch (err) {
+    console.log(err);
+    dispatch(
+      registerMemberFail(err.response ? err.response.data.message : err.message)
     );
   }
 };

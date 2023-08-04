@@ -13,6 +13,7 @@ export const memberSlice = createSlice({
     error: null,
     success: false,
     updateSuccess: false,
+    register_success: false,
   },
   reducers: {
     loginStart: (state) => {
@@ -56,6 +57,18 @@ export const memberSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    registerMemberStart: (state) => {
+      state.loading = true;
+      state.register_success = false;
+    },
+    registerMemberSuccess: (state) => {
+      state.loading = false;
+      state.register_success = true;
+    },
+    registerMemberFail: (state, action) => {
+      state.loading = false;
+      state.err = action.payload;
+    },
   },
 });
 
@@ -70,5 +83,8 @@ export const {
   getMembersStart,
   getMembersSuccess,
   getMembersFail,
+  registerMemberStart,
+  registerMemberSuccess,
+  registerMemberFail,
 } = memberSlice.actions;
 export default memberSlice.reducer;

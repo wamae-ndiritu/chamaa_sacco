@@ -1,16 +1,27 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./Modal.css"; // Import your modal styles
-import { URL } from "../Url";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./Modal.css";
 import { useGlobalContext } from "../context/context";
+import { validateInputsError } from "../InputValidation";
+import { listMembers, registerMember } from "../redux/actions/memberActions";
+import Message from "../utilComponents/Message";
+import LinearDotted from "../utilComponents/spinners/LinearDotted";
 
 function MemberModal() {
+  const dispatch = useDispatch();
+
+  const { loading, error, register_success, userInfo } = useSelector(
+    (state) => state.member
+  );
   const { isModalOpen, closeMemberModal } = useGlobalContext();
 
   const [details, setDetails] = useState({
     fullname: "",
     phone: "",
   });
+  const [isInputError, setIsInputError] = useState(false);
+
+  const groupId = userInfo?.group_id;
 
   const handleChange = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
@@ -18,13 +29,18 @@ function MemberModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post(`${URL}/api/members/register`, details)
-      .then(({ data }) => {
-        closeMemberModal();
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
+    const error = validateInputsError(details);
+    setIsInputError(error);
+    if (error === false) {
+      registerMember(
+        {
+          fullname: details.fullname,
+          phone_no: details.phone,
+          group_id: groupId,
+        },
+        dispatch
+      );
+    }
   };
 
   const handleCloseModal = () => {
@@ -32,12 +48,26 @@ function MemberModal() {
     document.body.style.overflow = "auto"; // Allow scrolling on the body
   };
 
+  useEffect(() => {
+    if (register_success) {
+      closeMemberModal();
+      listMembers(groupId, dispatch);
+    }
+  }, [dispatch, register_success, closeMemberModal]);
+
   return (
     <div>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h3 className="h3 text-success text-center">Add Member</h3>
+            {isInputError ? (
+              <Message variant="alert-danger">All inputs required!</Message>
+            ) : loading ? (
+              <LinearDotted />
+            ) : (
+              error && <Message variant="alert-danger">{error}</Message>
+            )}
             <div class="mb-3">
               <label for="name" class="form-label">
                 Full Name

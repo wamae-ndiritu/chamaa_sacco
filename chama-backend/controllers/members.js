@@ -4,6 +4,7 @@ const { generateToken } = require("../token");
 
 const registerMember = (req, res) => {
   const { fullname, group_id, phone_no } = req.body;
+  console.log(req.body);
 
   const groupId = Number(group_id);
 

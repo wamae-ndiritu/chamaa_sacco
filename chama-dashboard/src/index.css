@@ -298,6 +298,7 @@ a {
   margin-top: 80px;
   padding: 0 20px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   min-height: 80vh;
   position: relative;
