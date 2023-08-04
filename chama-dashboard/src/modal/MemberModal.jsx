@@ -4,8 +4,8 @@ import "./Modal.css"; // Import your modal styles
 import { URL } from "../Url";
 import { useGlobalContext } from "../context/context";
 
-function Modal() {
-  const { isModalOpen, closeModal } = useGlobalContext();
+function MemberModal() {
+  const { isModalOpen, closeMemberModal } = useGlobalContext();
 
   const [details, setDetails] = useState({
     fullname: "",
@@ -20,12 +20,15 @@ function Modal() {
     e.preventDefault();
     axios
       .post(`${URL}/api/members/register`, details)
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => {
+        closeMemberModal();
+        console.log(data);
+      })
       .catch((err) => console.log(err));
   };
 
   const handleCloseModal = () => {
-    closeModal();
+    closeMemberModal();
     document.body.style.overflow = "auto"; // Allow scrolling on the body
   };
 
@@ -76,4 +79,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default MemberModal;

@@ -25,7 +25,7 @@ function ScrollProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
 
-  const closeModal = () => {
+  const closeMemberModal = () => {
     dispatch({ type: "CLOSE_MODAL" });
   };
 
@@ -64,7 +64,7 @@ function ScrollProvider({ children }) {
       .catch((err) => console.log(err));
   };
 
-  const openModal = () => {
+  const openMemberModal = () => {
     dispatch({ type: "OPEN_MODAL" });
   };
 
@@ -92,8 +92,8 @@ function ScrollProvider({ children }) {
       value={{
         ...state,
         deviceWidth,
-        closeModal,
-        openModal,
+        closeMemberModal,
+        openMemberModal,
         getMembers,
         getAdmins,
         openMessageModal,

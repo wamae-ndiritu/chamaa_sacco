@@ -7,6 +7,9 @@ import { useGlobalContext } from "../../context/context";
 
 export default function MembersList({ data }) {
   const { userInfo } = useSelector((state) => state.member);
+
+  const { openMemberModal } = useGlobalContext();
+
   const handleDelete = (id) => {
     console.log("deleting soon...");
   };
@@ -79,9 +82,13 @@ export default function MembersList({ data }) {
           checkboxSelection
         />
       </div>
-      <div className="add-badge">
-        <PersonAddAltIcon className="add-icon" />
-      </div>
+      {userInfo?.isOfficial ? (
+        <div className="add-badge" onClick={() => openMemberModal()}>
+          <PersonAddAltIcon className="add-icon" />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
