@@ -6,7 +6,7 @@ import { listMembers } from "../redux/actions/memberActions";
 
 const Members = () => {
   const dispatch = useDispatch();
-  const { members } = useSelector((state) => state.member);
+  const { members, userInfo } = useSelector((state) => state.member);
 
   const formattedData = members?.map((member) => {
     return {
@@ -17,9 +17,11 @@ const Members = () => {
 
   console.log(members);
 
+  const groupId = userInfo?.group_id;
+
   useEffect(() => {
-    listMembers(dispatch);
-  }, [dispatch]);
+    listMembers(groupId, dispatch);
+  }, [groupId, dispatch]);
 
   return (
     <div className="w-mobile">

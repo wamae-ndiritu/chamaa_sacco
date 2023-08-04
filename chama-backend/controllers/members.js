@@ -163,7 +163,17 @@ const updateProfile = (req, res) => {
   });
 };
 
-const getGroupMembers = (req, res) => {};
+const getGroupMembers = (req, res) => {
+  const group_id = req.query.groups;
+  const query = "SELECT * FROM members WHERE group_id = ?";
+
+  db.query(query, [group_id], (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Internal error occurred!" });
+    }
+    res.status(200).json(data);
+  });
+};
 const getGroupMember = (req, res) => {};
 const getGroupManagement = (req, res) => {};
 

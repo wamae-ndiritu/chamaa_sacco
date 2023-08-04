@@ -44,11 +44,10 @@ export const updateProfile = async (id, details, dispatch) => {
   }
 };
 
-export const listMembers = async (dispatch) => {
+export const listMembers = async (id, dispatch) => {
   dispatch(getMembersStart());
-
   try {
-    const { data } = await axios.get(`${URL}/api/members/`);
+    const { data } = await axios.get(`${URL}/api/members/?groups=${id}`);
     dispatch(getMembersSuccess(data));
   } catch (err) {
     dispatch(
