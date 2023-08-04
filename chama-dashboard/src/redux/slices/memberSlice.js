@@ -8,6 +8,7 @@ export const memberSlice = createSlice({
   name: "member",
   initialState: {
     userInfo: userInfoFromLocalStorage,
+    members: [],
     loading: false,
     error: null,
     success: false,
@@ -44,6 +45,17 @@ export const memberSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getMembersStart: (state) => {
+      state.loading = true;
+    },
+    getMembersSuccess: (state, action) => {
+      state.loading = false;
+      state.members = action.payload;
+    },
+    getMembersFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -55,5 +67,8 @@ export const {
   updateProfileStart,
   updateProfileSuccess,
   updateProfileFail,
+  getMembersStart,
+  getMembersSuccess,
+  getMembersFail,
 } = memberSlice.actions;
 export default memberSlice.reducer;

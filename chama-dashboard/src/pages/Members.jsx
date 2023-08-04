@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import MembersList from "../components/members/MembersList";
 import Modal from "../modal/Modal";
-import { useGlobalContext } from "../context/context";
+import { listMembers } from "../redux/actions/memberActions";
 
 const Members = () => {
-  const { members, getMembers } = useGlobalContext();
+  const dispatch = useDispatch();
+  const { members } = useSelector((state) => state.member);
 
   const formattedData = members?.map((member) => {
     return {
@@ -13,9 +15,11 @@ const Members = () => {
     };
   });
 
+  console.log(members);
+
   useEffect(() => {
-    getMembers();
-  }, [getMembers]);
+    listMembers(dispatch);
+  }, [dispatch]);
 
   return (
     <div className="w-mobile">

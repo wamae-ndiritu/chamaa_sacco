@@ -7,6 +7,9 @@ import {
   updateProfileStart,
   updateProfileSuccess,
   updateProfileFail,
+  getMembersStart,
+  getMembersSuccess,
+  getMembersFail,
 } from "../slices/memberSlice";
 import { URL } from "../../Url";
 
@@ -37,6 +40,19 @@ export const updateProfile = async (id, details, dispatch) => {
   } catch (err) {
     dispatch(
       updateProfileFail(err.response ? err.response.data.message : err.message)
+    );
+  }
+};
+
+export const listMembers = async (dispatch) => {
+  dispatch(getMembersStart());
+
+  try {
+    const { data } = await axios.get(`${URL}/api/members/`);
+    dispatch(getMembersSuccess(data));
+  } catch (err) {
+    dispatch(
+      getMembersFail(err.response ? err.response.data.message : err.message)
     );
   }
 };
