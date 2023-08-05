@@ -6,7 +6,6 @@ const consumerKey = process.env.CONSUMER_KEY;
 const consumerSec = process.env.CONSUMER_SECRET;
 const BusinessShortCode = process.env.BUSINESS_SHORT_CODE;
 const till_no = process.env.TILL_NO;
-const URL = process.env.SERVER_URL;
 
 const newPassword = () => {
   const date = datetime.create();
@@ -42,9 +41,7 @@ exports.token = (req, res, next) => {
       headers,
     })
     .then((response) => {
-      // console.log(response);
       let token = response.data.access_token;
-      console.log(`token is ${token}`);
       req.access_token = token;
       next();
     })
@@ -52,22 +49,15 @@ exports.token = (req, res, next) => {
       console.log(err);
       res.status(400).json({ message: "Invalid request" });
     });
-  // req.access_token = "AkZ6tTm7YiTiKxtj7w5MgxHBbrCH";
-  // next();
 };
 
 exports.stkPush = (req, res) => {
   let token = req.access_token;
 
-  console.log(req.body);
-  console.log(`token as in stkPush ${token}`);
-
-  const { amountPayable, phoneNo } = req.body;
-
-  // console.log(`amountPayable: ${amountPayable}, phoneNo: ${phoneNo}`);
+  const { contributionAmount, phoneNo } = req.body;
 
   const phone = Number(phoneNo);
-  const contribution = Number(amountPayable);
+  const contribution = Number(contributionAmount);
   const headers = {
     Authorization: "Bearer " + token,
   };
@@ -84,7 +74,7 @@ exports.stkPush = (req, res) => {
     Timestamp: timestamp,
     TransactionType: "CustomerBuyGoodsOnline",
     Amount: contribution,
-    PartyA: BusinessShortCode,
+    PartyA: phone,
     PartyB: till_no,
     PhoneNumber: phone,
     CallBackURL: callbackUrl,
@@ -99,6 +89,6 @@ exports.stkPush = (req, res) => {
     .then((response) => res.send(response.data))
     .catch((error) => {
       res.status(400).json({ message: "An error occurred" });
-      // console.log(error);
+      console.log(error);
     });
 };
