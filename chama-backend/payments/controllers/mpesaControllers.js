@@ -5,6 +5,7 @@ const passKey = process.env.PASS_KEY;
 const consumerKey = process.env.CONSUMER_KEY;
 const consumerSec = process.env.CONSUMER_SECRET;
 const BusinessShortCode = process.env.BUSINESS_SHORT_CODE;
+const till_no = process.env.TILL_NO;
 const URL = process.env.SERVER_URL;
 
 const newPassword = () => {
@@ -81,10 +82,10 @@ exports.stkPush = (req, res) => {
     BusinessShortCode: BusinessShortCode,
     Password: newPassword(),
     Timestamp: timestamp,
-    TransactionType: "CustomerPayBillOnline",
+    TransactionType: "CustomerBuyGoodsOnline",
     Amount: contribution,
     PartyA: BusinessShortCode,
-    PartyB: phone,
+    PartyB: till_no,
     PhoneNumber: phone,
     CallBackURL: callbackUrl,
     AccountReference: "Nelite IT Solutions",
