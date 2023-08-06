@@ -6,6 +6,7 @@ const consumerKey = process.env.CONSUMER_KEY;
 const consumerSec = process.env.CONSUMER_SECRET;
 const BusinessShortCode = process.env.BUSINESS_SHORT_CODE;
 const till_no = process.env.TILL_NO;
+const user_name = process.env.MPESA_USER_NAME;
 
 const newPassword = () => {
   const date = datetime.create();
@@ -24,7 +25,6 @@ exports.mpesaPassword = (req, res) => {
 };
 
 exports.token = (req, res, next) => {
-  console.log("calling token...");
   //ACCESS_TOKEN
 
   const url =
@@ -86,6 +86,42 @@ exports.stkPush = (req, res) => {
 
   axios
     .post(stkUrl, data, { headers: headers })
+    .then((response) => res.send(response.data))
+    .catch((error) => {
+      res.status(400).json({ message: "An error occurred" });
+      console.log(error);
+    });
+};
+
+exports.b2c = (req, res) => {
+  let token = req.access_token;
+
+  const { amount, phoneNo } = req.body;
+
+  const payable_amount = Number(amount);
+  const phone = Number(phoneNo);
+
+  const url = "https://api.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+
+  const headers = {
+    Authorization: "Bearer " + token,
+  };
+
+  const data = {
+    InitiatorName: user_name,
+    SecurityCredential: newPassword(),
+    CommandID: "BusinessPayment",
+    Amount: payable_amount,
+    PartyA: BusinessShortCode,
+    PartyB: phone,
+    Remarks: "NELITE IT SOLUTIONS",
+    QueueTimeOutURL: "",
+    ResultUrl: "https://chamaa-sacco-api.onrender.com/api/confirmation/b2c",
+    Occassion: "Withdraw Savings",
+  };
+
+  axios
+    .post(url, data, { headers: headers })
     .then((response) => res.send(response.data))
     .catch((error) => {
       res.status(400).json({ message: "An error occurred" });

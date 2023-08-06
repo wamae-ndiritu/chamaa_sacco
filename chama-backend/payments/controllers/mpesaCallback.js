@@ -2,6 +2,7 @@ const express = require("express");
 
 const callBackRouter = express.Router();
 
+// callbackURL FOR STK PUSH
 callBackRouter.post("/", async (req, res) => {
   const result = req.body.Body.stkCallback.CallbackMetadata;
 
@@ -46,9 +47,16 @@ callBackRouter.post("/", async (req, res) => {
     "0"
   );
   const phoneNo = Number(formattedStringifiedPhoneNo);
-
-  console.log("Awaiting to be saved in the database");
   console.log(amountPaid, mpesaReceiptNumber, transactionDate, phoneNo);
 });
 
+// QueueURL FOR B2C
+callBackRouter.post("/queue", (req, res) => {
+  console.log(req.body);
+});
+
+// ResultRL FOR B2C
+callBackRouter.post("/b2c", async (req, res) => {
+  console.log(req.body.Result);
+});
 module.exports = { callBackRouter };
