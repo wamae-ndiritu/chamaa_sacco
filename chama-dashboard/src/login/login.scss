@@ -3,11 +3,14 @@
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
+    // overflow-y: hidden;
 
     .login-left{
         background-color: #008b8b;
         flex: 40%;
+        height: 100%;
         padding: 30px;
+        overflow-y: hidden;
 
         .header-logo-text{
             color: #fff;
@@ -67,6 +70,7 @@
         align-items: center;
         padding: 0 50px;
         position: relative;
+        margin-top: 0;
 
         .login-wrapper{
             width: 400px;
