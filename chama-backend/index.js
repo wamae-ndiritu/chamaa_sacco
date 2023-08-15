@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const { memberRouter } = require("./routes/memberRoutes");
 const { mpesaRouter } = require("./payments/routes/mpesaRoutes");
 const { callBackRouter } = require("./payments/controllers/mpesaCallback");
-const { groupRouter } = require("./routes/groups");
+const { groupRouter } = require("./routes/groupRoutes");
 
 dotenv.config();
 

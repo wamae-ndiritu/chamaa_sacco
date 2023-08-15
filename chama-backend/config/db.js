@@ -16,6 +16,7 @@ const db = mysql.createConnection({
   port: db_port,
 });
 
+
 // Connect to the database
 db.connect((err) => {
   if (err) {
@@ -23,8 +24,6 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to the database');
-  
-  // Perform database operations here
 });
 
 // Handle connection errors

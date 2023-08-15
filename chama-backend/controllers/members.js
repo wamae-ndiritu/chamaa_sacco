@@ -4,14 +4,13 @@ const { generateToken } = require("../token");
 
 const registerMember = (req, res) => {
   const { fullname, group_id, phone_no } = req.body;
-  console.log(req.body);
-
   const groupId = Number(group_id);
 
   const query = "SELECT * FROM `members` WHERE phone_no = ? OR fullname = ?";
 
   db.query(query, [phone_no, fullname], (err, data) => {
     if (err) {
+      console.log(err)
       res.status(500).json({ message: "Internal error occurred!" });
     } else if (data.length) {
       res.status(409).json({ message: "Member already exists!" });
@@ -27,6 +26,7 @@ const registerMember = (req, res) => {
 
       db.query(query, [values], (err, data) => {
         if (err) {
+          console.log(err)
           res.status(500).json({ message: "Internal error occurred!" });
         }
         res.status(200).json(data);
@@ -38,7 +38,7 @@ const registerMember = (req, res) => {
 const LoginMember = (req, res) => {
   const { phone_no, group_name, password } = req.body;
   // check group existence
-  const query = "SELECT * FROM `groups` WHERE group_name = ?";
+  const query = "SELECT * FROM `chamaa_groups` WHERE group_name = ?";
 
   db.query(query, [group_name], (err, data) => {
     if (err) {
