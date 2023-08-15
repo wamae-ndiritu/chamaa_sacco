@@ -1,4 +1,5 @@
 const mysql = require("mysql2");
+const { createTables } = require("../schemas");
 require("dotenv").config();
 
 const db_host = process.env.DB_HOST;
@@ -24,6 +25,7 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to the database');
+  createTables()
 });
 
 // Handle connection errors
