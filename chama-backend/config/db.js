@@ -16,4 +16,21 @@ const db = mysql.createConnection({
   port: db_port,
 });
 
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the database');
+  
+  // Perform database operations here
+});
+
+// Handle connection errors
+db.on('error', (err) => {
+  console.error('Database error:', err);
+  // You might want to handle the error, reconnect, or take other actions here
+});
+
 module.exports = { db };
