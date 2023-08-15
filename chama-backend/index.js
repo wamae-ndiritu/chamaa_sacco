@@ -5,6 +5,7 @@ const { memberRouter } = require("./routes/memberRoutes");
 const { mpesaRouter } = require("./payments/routes/mpesaRoutes");
 const { callBackRouter } = require("./payments/controllers/mpesaCallback");
 const { groupRouter } = require("./routes/groupRoutes");
+const { createTables } = require("./schemas");
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(cors());
+
+createTables();
 
 // API CALLS
 app.use("/api/members", memberRouter);
