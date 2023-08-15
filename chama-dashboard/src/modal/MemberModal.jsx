@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Modal.css";
 import { useGlobalContext } from "../context/context";
-import { validateInputsError } from "../InputValidation";
+import { formatPhoneNumber, validateInputsError } from "../InputValidation";
 import { listMembers, registerMember } from "../redux/actions/memberActions";
 import Message from "../utilComponents/Message";
 import LinearDotted from "../utilComponents/spinners/LinearDotted";
@@ -15,27 +15,35 @@ function MemberModal() {
   );
   const { isModalOpen, closeMemberModal } = useGlobalContext();
 
-  const [details, setDetails] = useState({
-    fullname: "",
-    phone: "",
-  });
+
+  const [fullname, setFullName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [phone_no, setPhone_no] = useState("");
   const [isInputError, setIsInputError] = useState(false);
+  const [formatError, setFormatError] = useState(null);
 
   const groupId = userInfo?.group_id;
 
   const handleChange = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value });
-  };
+    setFormatError(null);
+    setPhoneNo(e.target.value);
+    const phone = formatPhoneNumber(e.target.value);
+      if (phone === null){
+        setFormatError("Use 07xx xxx xxx or 01xx xxx xxx or 254x xx xxx xxx")
+      }else{
+        setPhone_no(phone);
+      }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const error = validateInputsError(details);
+    const error = validateInputsError({fullname, phoneNo});
     setIsInputError(error);
     if (error === false) {
       registerMember(
         {
-          fullname: details.fullname,
-          phone_no: details.phone,
+          fullname,
+          phone_no,
           group_id: groupId,
         },
         dispatch
@@ -77,7 +85,7 @@ function MemberModal() {
                 class="form-control"
                 id="name"
                 name="fullname"
-                onChange={handleChange}
+                onChange={(e) => setFullName(e.target.value)}
                 placeholder="John Doe"
               />
             </div>
@@ -93,6 +101,7 @@ function MemberModal() {
                 onChange={handleChange}
                 placeholder="254740924507"
               />
+              <span className="text-danger pt-1" style={{fontSize: "12px"}}>{formatError}</span>
             </div>
             <div className="modal-btns">
               <button className="bg-success " onClick={handleSubmit}>

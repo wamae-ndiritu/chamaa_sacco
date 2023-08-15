@@ -67,7 +67,7 @@ export const memberSlice = createSlice({
     },
     registerMemberFail: (state, action) => {
       state.loading = false;
-      state.err = action.payload;
+      state.error = action.payload;
     },
   },
 });

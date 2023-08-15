@@ -65,7 +65,6 @@ export const registerMember = async (details, dispatch) => {
     const { data } = await axios.post(`${URL}/api/members/register`, details);
     dispatch(registerMemberSuccess(data));
   } catch (err) {
-    console.log(err);
     dispatch(
       registerMemberFail(err.response ? err.response.data.message : err.message)
     );
